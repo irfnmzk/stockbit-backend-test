@@ -3,8 +3,8 @@ require("dotenv").config();
 const express = require("express");
 const cors = require("cors");
 
-const attachRoutes = require("./routes");
 const { database } = require("./config/database");
+const attachRoutes = require("./routes");
 const loggingMiddleware = require("./middlewares/logging");
 
 const initializeApp = async () => {
@@ -16,7 +16,7 @@ const initializeApp = async () => {
 
   attachRoutes(app);
 
-  app.listen(3000, () => {
+  app.listen(process.env.PORT || 3000, () => {
     console.log("app started");
   });
 };
