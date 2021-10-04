@@ -8,6 +8,8 @@ const attachRoutes = require("./routes");
 const loggingMiddleware = require("./middlewares/logging");
 
 const initializeApp = async () => {
+
+  
   const app = express();
 
   app.use(cors());
@@ -16,9 +18,7 @@ const initializeApp = async () => {
 
   attachRoutes(app);
 
-  app.listen(process.env.PORT || 3000, () => {
-    console.log("app started");
-  });
+  return app;
 };
 
 const initializeDatabase = async () => {
@@ -34,7 +34,15 @@ const initializeDatabase = async () => {
 
 const initialize = async () => {
   await initializeDatabase();
-  initializeApp();
+  const app = await initializeApp();
+
+  app.listen(process.env.PORT || 3000, () => {
+    console.log("app started");
+  });
 };
 
 initialize();
+
+module.exports = {
+  initializeApp,
+};
