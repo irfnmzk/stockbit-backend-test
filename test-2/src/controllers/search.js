@@ -5,8 +5,6 @@ const searchMovie = async (req, res) => {
 
   const movies = await apiSearchMovie(params);
 
-  console.log(movies);
-
   return res.send({ hello: "world" });
 };
 
