@@ -11,7 +11,7 @@ const movieDetail = async (req, res) => {
     });
   }
 
-  return res.send(movies);
+  return res.json(movies);
 };
 
 module.exports = {

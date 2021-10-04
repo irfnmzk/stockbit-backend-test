@@ -10,13 +10,16 @@ const apiSearchMovie = async (params) => {
     ...params,
   };
   const query = qs.stringify(queryParams);
-  const response = await fetch(OMDB_BASE_URL + "?" + query).then((data) =>
-    data.json()
-  );
 
-  console.log(response);
-
-  return response;
+  try {
+    const response = await fetch(OMDB_BASE_URL + "?" + query).then((data) =>
+      data.json()
+    );
+    return response;
+  } catch (err) {
+    console.error(err);
+    return [];
+  }
 };
 
 const apiMovieDetail = async (id) => {
