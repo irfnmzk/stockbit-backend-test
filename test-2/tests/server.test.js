@@ -12,4 +12,10 @@ describe("API ENDPOINT", () => {
     const result = await request(app).get("/movie/tt0093175");
     expect(result.status).toBe(200);
   });
+
+  it("should return return 200 when searching movie", async () => {
+    const app = await initializeApp();
+    const result = await request(app).get("/search?s=batman");
+    expect(result.status).toBe(200);
+  });
 });
