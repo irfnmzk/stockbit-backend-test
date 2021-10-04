@@ -3,11 +3,15 @@ const { apiMovieDetail } = require("../services/omdb");
 const movieDetail = async (req, res) => {
   const { id } = req.params;
 
-  console.log(id);
+  const movies = await apiMovieDetail(id);
 
-  //   const movies = await apiMovieDetail(params);
+  if (!movies) {
+    return res.status(404).send({
+      message: "NOT FOUND",
+    });
+  }
 
-  return res.send({ hello: "world" });
+  return res.send(movies);
 };
 
 module.exports = {
